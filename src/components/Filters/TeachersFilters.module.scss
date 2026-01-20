@@ -1,3 +1,64 @@
-.filters {
-  margin-bottom: 24px;
+.filtersBox {
+  display: flex;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.3;
+  color: #8a8a89;
+}
+
+.selectWrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.select {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.1;
+  color: #121417;
+
+  outline: none;
+  border-radius: 14px;
+  padding: 14px 44px 14px 18px;
+  height: 48px;
+
+  border: none;
+  background-color: #fff;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  cursor: pointer;
+}
+
+.chevron {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #121417;
+}
+
+.selectLanguages {
+  width: 221px;
+}
+
+.selectLevel {
+  width: 255px;
+}
+
+.selectPrice {
+  width: 124px;
 }

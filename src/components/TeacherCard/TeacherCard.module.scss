@@ -1,40 +1,598 @@
-.card {
+// .teacherContainer {
+//   display: flex;
+//   gap: 48px;
+//   padding: 24px;
+//   width: 1184px;
+//   background-color: #fff;
+//   border-radius: 24px;
+// }
+
+// .container {
+//   width: 968px;
+// }
+
+// .title {
+//   font-weight: 500;
+//   font-size: 24px;
+//   line-height: 1;
+//   color: #121417;
+//   margin: 0;
+// }
+
+// .box {
+//   display: flex;
+//   align-items: center;
+//   margin-bottom: 6px;
+// }
+
+// .smallLabel {
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.5;
+//   color: #8a8a89;
+//   margin: 0;
+// }
+
+// /* ✅ meta row як у Figma (≈697x26) */
+// .metaRow {
+//   display: flex;
+//   align-items: center;
+//   gap: 16px;
+//   height: 26px;
+//   max-width: 697px;
+//   margin-left: auto;
+// }
+
+// .metaItem {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 8px;
+//   white-space: nowrap;
+// }
+
+// .metaRow p {
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.5;
+//   color: #121417;
+//   margin: 0;
+// }
+
+// /* ✅ divider як тонка вертикальна лінія */
+// .divider {
+//   width: 1px;
+//   height: 16px;
+//   background: rgba(18, 20, 23, 0.2);
+//   display: block;
+// }
+
+// .iconBook {
+//   display: block;
+//   color: #121417;
+// }
+
+// .iconStar {
+//   color: #ffc531;
+// }
+
+// .price {
+//   color: #38cd3e;
+// }
+
+// .avatarBox {
+//   border: 3px solid #fbe9ba;
+//   border-radius: 100px;
+//   width: 120px;
+//   height: 120px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   position: relative;
+// }
+
+// .avatar {
+//   border-radius: 100px;
+//   width: 96px;
+//   height: 96px;
+//   object-fit: cover;
+// }
+
+// .onlineDot {
+//   position: absolute;
+//   top: 17px;
+//   right: 17px;
+//   width: 12px;
+//   height: 12px;
+//   border-radius: 50%;
+//   background: #38cd3e;
+//   border: 2px solid #fff;
+// }
+
+// .favBtn {
+//   border: none;
+//   background: transparent;
+//   cursor: pointer;
+//   padding: 0;
+//   margin-left: 18px;
+// }
+
+// .favBtn svg {
+//   pointer-events: none;
+// }
+
+// .heart {
+//   fill: transparent;
+//   stroke: currentColor;
+//   color: #121417;
+// }
+
+// .favorite {
+//   fill: #f4c550;
+//   stroke: #f4c550;
+// }
+
+// .teacherInfoBox {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
+//   margin-bottom: 16px;
+//   margin-top: 32px;
+// }
+
+// .teacherInfoBox > p {
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.5;
+//   color: #8a8a89;
+//   margin: 0;
+// }
+
+// .teacherInfoBox p > span {
+//   color: #121417;
+// }
+
+// .underline {
+//   text-decoration: underline;
+// }
+
+// .readMoreBtn {
+//   border: none;
+//   background: transparent;
+//   padding: 0;
+//   cursor: pointer;
+
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.5;
+//   text-decoration: underline;
+//   color: #121417;
+// }
+
+// .more {
+//   margin-top: 16px;
+// }
+
+// .experience {
+//   margin: 0 0 32px;
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.5;
+//   color: #121417;
+// }
+
+// .reviewsList {
+//   list-style: none;
+//   padding: 0;
+//   margin: 0;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 32px;
+// }
+
+// .reviewHead {
+//   display: flex;
+//   gap: 12px;
+//   margin-bottom: 16px;
+// }
+
+// .reviewerAvatar {
+//   width: 44px;
+//   height: 44px;
+//   border-radius: 100px;
+//   border: 1px solid rgba(18, 20, 23, 0.2);
+//   background: rgba(18, 20, 23, 0.05);
+// }
+
+// .reviewerName {
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.5;
+//   color: #8a8a89;
+//   margin: 0;
+// }
+
+// .reviewRating {
+//   display: flex;
+//   align-items: center;
+//   gap: 8px;
+// }
+
+// .reviewRating > span {
+//   font-weight: 500;
+//   font-size: 14px;
+//   line-height: 1.3;
+//   color: #121417;
+// }
+
+// .reviewText {
+//   font-weight: 500;
+//   font-size: 16px;
+//   line-height: 1.5;
+//   color: #121417;
+//   margin: 0;
+// }
+
+// .levelsList {
+//   display: flex;
+//   gap: 8px;
+//   margin-top: 32px;
+//   padding: 0;
+//   list-style: none;
+// }
+
+// .levelItem {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   // height: 32px;
+//   padding: 8px 12px;
+//   border-radius: 35px;
+
+//   border: 1px solid rgba(18, 20, 23, 0.2);
+//   background: transparent;
+
+//   font-weight: 500;
+//   font-size: 14px;
+//   line-height: 1.15;
+//   color: #121417;
+//   white-space: nowrap;
+// }
+
+// .activeLevel {
+//   background-color: #f4c550;
+//   border-color: #f4c550;
+// }
+
+// .btnBox {
+//   width: 242px;
+//   height: 60px;
+//   margin-top: 32px;
+// }
+
+// .bookBtn {
+//   width: 100%;
+//   height: 100%;
+//   border: none;
+//   border-radius: 12px;
+//   background: #f4c550;
+//   color: #121417;
+//   font-weight: 600;
+//   cursor: pointer;
+// }
+
+.teacherContainer {
   display: flex;
+  gap: 48px;
+  padding: 24px;
+
+  /* ✅ щоб не було "хвоста" і не ламалося на ширших екранах */
+  width: 100%;
+  max-width: 1184px;
+
+  background-color: #fff;
+  border-radius: 24px;
+}
+
+.container {
+  width: 100%;
+  max-width: 968px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1;
+  color: #121417;
+  margin: 0;
+}
+
+.box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 16px;
-  padding: 16px;
-  border: 1px solid #eee;
-  border-radius: 16px;
-  background: #fff;
+
+  margin-bottom: 6px;
 }
 
-.avatar {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  object-fit: cover;
+.smallLabel {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #8a8a89;
+  margin: 0;
 }
 
-.content {
-  flex: 1;
+/* ✅ МЕТА-РЯД як у Figma: 697×26 */
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 697px;
+  height: 26px;
+
+  /* 🔥 прибираємо зайві відступи */
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
 }
 
-.name {
-  margin: 0 0 8px;
-  font-size: 18px;
-  font-weight: 600;
+.metaInfo {
+  display: flex;
+  align-items: center;
+
+  /* ✅ у макеті між елементами невелика відстань */
+  gap: 16px;
+
+  height: 26px;
+}
+
+/* ✅ “Lessons online” (132×24 з макету) */
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 24px;
+}
+
+.metaText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #121417;
+  margin: 0;
+}
+
+.bookIcons {
+  display: inline-flex;
+  align-items: center;
+  /* ✅ без відстані між “сторінками” */
+  gap: 0;
+}
+
+.iconBook {
+  display: block;
   color: #121417;
 }
 
-.meta {
-  display: flex;
-  gap: 16px;
-  margin: 0 0 8px;
-  color: #555;
-  font-size: 14px;
+.iconStar {
+  color: #ffc531;
 }
 
-.lang {
+.divider {
+  color: rgba(18, 20, 23, 0.2);
+}
+
+.price {
+  color: #38cd3e;
+}
+
+/* ✅ Аватар */
+.avatarBox {
+  border: 3px solid #fbe9ba;
+  border-radius: 100px;
+  width: 120px;
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatar {
+  border-radius: 100px;
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+}
+
+.onlineDot {
+  position: absolute;
+  top: 17px;
+  right: 17px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #38cd3e;
+  border: 2px solid #fff;
+}
+
+/* ✅ Серце (тільки воно справа) */
+.favBtn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+
+  /* щоб кнопка не "зʼїдала" зайву ширину */
+  width: 26px;
+  height: 26px;
+
+  flex: 0 0 auto;
+}
+
+.favBtn svg {
+  pointer-events: none;
+}
+
+.heart {
+  fill: transparent;
+  stroke: currentColor;
+  color: #121417;
+}
+
+.favorite {
+  fill: #f4c550;
+  stroke: #f4c550;
+}
+
+.teacherInfoBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  margin-top: 32px;
+}
+
+.teacherInfoBox > p {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #8a8a89;
   margin: 0;
-  color: #555;
+}
+
+.teacherInfoBox p > span {
+  color: #121417;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.readMoreBtn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  text-decoration: underline;
+  color: #121417;
+}
+
+.more {
+  margin-top: 16px;
+}
+
+.experience {
+  margin: 0 0 32px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #121417;
+}
+
+.reviewsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.reviewHead {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.reviewerAvatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 100px;
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  background: rgba(18, 20, 23, 0.05);
+}
+
+.reviewerName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #8a8a89;
+  margin: 0;
+}
+
+.reviewRating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.reviewRating > span {
+  font-weight: 500;
   font-size: 14px;
+  line-height: 1.3;
+  color: #121417;
+}
+
+.reviewText {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #121417;
+  margin: 0;
+}
+
+.levelsList {
+  display: flex;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 0;
+  list-style: none;
+}
+
+.levelItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(18, 20, 23, 0.2);
+  border-radius: 35px;
+  padding: 8px 12px;
+  height: 32px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.15;
+  color: #121417;
+}
+
+.activeLevel {
+  background-color: #f4c550;
+  border-color: #f4c550;
+}
+
+.btnBox {
+  width: 242px;
+  height: 60px;
+  margin-top: 32px;
+}
+
+.bookBtn {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+  background: #f4c550;
+  color: #121417;
+  font-weight: 600;
+  cursor: pointer;
 }
