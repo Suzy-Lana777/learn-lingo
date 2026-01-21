@@ -1,7 +1,3 @@
-/* ========================
-   Imports
-======================== */
-
 import {
   ref,
   get,
@@ -16,24 +12,12 @@ import type { DatabaseReference, DataSnapshot } from "firebase/database";
 import { db } from "./firebase";
 import type { Teacher } from "../types/teacher";
 
-/* ========================
-   Types
-======================== */
-
 export type TeachersPage = {
   items: Teacher[];
   lastKey: string | null;
 };
 
-/* ========================
-   Constants
-======================== */
-
 const TEACHERS_PATH = "teachers";
-
-/* ========================
-   Utils
-======================== */
 
 function createTeachersRef(): DatabaseReference {
   return ref(db, TEACHERS_PATH);
@@ -58,10 +42,6 @@ function mapSnapshotToTeachers(snapshot: DataSnapshot): TeachersPage {
 
   return { items, lastKey };
 }
-
-/* ========================
-   Public API
-======================== */
 
 export async function getFirstTeachers(limit = 4): Promise<TeachersPage> {
   const teachersRef = createTeachersRef();

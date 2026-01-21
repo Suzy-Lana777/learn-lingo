@@ -1,41 +1,115 @@
+// .header {
+//   background: #fff;
+//   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+// }
+
+// .container {
+//   max-width: 1184px;
+//   margin: 0 auto;
+//   padding: 16px 24px;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: 24px;
+// }
+
+// .logo {
+//   text-decoration: none;
+//   color: #121417;
+//   font-weight: 800;
+//   letter-spacing: -0.02em;
+// }
+
+// .nav {
+//   display: flex;
+//   align-items: center;
+//   gap: 20px;
+// }
+
+// .link {
+//   text-decoration: none;
+//   color: #121417;
+//   font-weight: 500;
+//   opacity: 0.85;
+// }
+
+// .active {
+//   opacity: 1;
+//   text-decoration: underline;
+//   text-underline-offset: 6px;
+// }
+
+// .actions {
+//   display: flex;
+//   align-items: center;
+//   gap: 12px;
+// }
+
+// .loginBtn {
+//   background: transparent;
+//   border: 1px solid rgba(0, 0, 0, 0.12);
+//   border-radius: 999px;
+//   padding: 10px 16px;
+//   cursor: pointer;
+// }
+
+// .registerBtn {
+//   background: #121417;
+//   color: #fff;
+//   border: none;
+//   border-radius: 999px;
+//   padding: 10px 16px;
+//   cursor: pointer;
+// }
+
 .header {
   background: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+  width: 1440px;
 }
 
 .container {
-  max-width: 1184px;
-  margin: 0 auto;
-  padding: 16px 24px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+
+  padding: 20px 64px;
 }
 
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
   text-decoration: none;
   color: #121417;
-  font-weight: 800;
+}
+
+.logoText {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
   letter-spacing: -0.02em;
 }
 
 .nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 28px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #121417;
 }
 
 .link {
   text-decoration: none;
-  color: #121417;
-  font-weight: 500;
-  opacity: 0.85;
+  color: inherit;
 }
 
 .active {
-  opacity: 1;
   text-decoration: underline;
   text-underline-offset: 6px;
 }
@@ -43,22 +117,57 @@
 .actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .loginBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 14px 16px;
+  border-radius: 12px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #121417;
+
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 999px;
-  padding: 10px 16px;
+  border: none;
   cursor: pointer;
+
+  &:hover {
+    background: #121417;
+    color: #fff;
+  }
+}
+
+/* два svg поруч */
+.loginIconWrap {
+  display: inline-flex;
+  align-items: center;
+  // gap: 6px;
 }
 
 .registerBtn {
-  background: #121417;
-  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 14px 39px;
+  border-radius: 12px;
+
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.25;
+
+  background: transparent;
   border: none;
-  border-radius: 999px;
-  padding: 10px 16px;
   cursor: pointer;
+
+  &:hover {
+    background: #121417;
+    color: #fff;
+  }
 }

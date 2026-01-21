@@ -1,0 +1,25 @@
+.wrap {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: transparent;
+  font-weight: 600;
+}
+
+.active {
+  background: #f4c550;
+  border-color: #f4c550;
+}

@@ -22,17 +22,15 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* ✅ Правий блок як у Figma */}
         <div className={styles.heroRight}>
           <img
-            src="/public/images/home-img.png"
+            src="/images/home-img.png"
             alt="LearnLingo hero"
             className={styles.heroImg}
           />
         </div>
       </section>
 
-      {/* ✅ Статистика знизу — ПОВЕРНУЛИ, нічого не видаляємо */}
       <section className={styles.stats}>
         <div className={styles.statItem}>
           <span className={styles.statNumber}>32,000+</span>
