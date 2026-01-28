@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.scss";
 
-interface ModalProps {
+type ModalProps = {
   onClose: () => void;
   children: React.ReactNode;
-}
+};
 
 export default function Modal({ onClose, children }: ModalProps) {
   const handleBackdropClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -18,11 +18,13 @@ export default function Modal({ onClose, children }: ModalProps) {
     };
 
     document.addEventListener("keydown", handleKeyDown);
+
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
+      document.body.style.overflow = prevOverflow;
     };
   }, [onClose]);
 
@@ -40,7 +42,7 @@ export default function Modal({ onClose, children }: ModalProps) {
           onClick={onClose}
           aria-label="Close modal"
         >
-          <svg width={32} height={32}>
+          <svg width="19" height="19" className={styles.closeIcon}>
             <use href="/icons/sprite.svg#icon-close" />
           </svg>
         </button>

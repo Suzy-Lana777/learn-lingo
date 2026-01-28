@@ -24,12 +24,16 @@
   position: absolute;
   right: 20px;
   top: 20px;
-
-  border: none;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
   background: transparent;
+  border: none;
   cursor: pointer;
+  color: #121417;
+}
 
-  svg {
-    stroke: #121417;
-  }
+.closeIcon {
+  display: block;
 }
