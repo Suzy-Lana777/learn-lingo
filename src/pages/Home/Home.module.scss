@@ -1,16 +1,194 @@
+// .page {
+//   width: 100%;
+// }
+
+// .container {
+//   max-width: 1440px;
+//   margin: 0 auto;
+
+//   /* ⬅️ ОЦЕ ГОЛОВНЕ */
+//   padding-left: 128px;
+//   padding-right: -64px;
+
+//   display: flex;
+//   flex-direction: column;
+//   gap: 24px;
+// }
+
+// .hero {
+//   display: flex;
+//   gap: 24px;
+//   align-items: stretch;
+// }
+
+// .heroLeft {
+//   width: 720px;
+//   height: 530px;
+
+//   background: #f8f8f8;
+//   border-radius: 30px;
+
+//   padding: 98px 64px;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+// }
+
+// .title {
+//   font-family: "Roboto", sans-serif;
+//   font-weight: 500;
+//   font-size: 48px;
+//   line-height: 56px;
+//   letter-spacing: -0.02em;
+//   color: #121417;
+
+//   width: 548px;
+//   margin: 0;
+// }
+
+// .language {
+//   display: inline-block;
+//   font-style: italic;
+//   font-weight: 400;
+
+//   background: #fbe9ba;
+//   border-radius: 12px;
+//   padding: 0 10px;
+
+//   text-decoration: none;
+// }
+
+// .text {
+//   width: 471px; /* ✅ як у макеті */
+//   font-family: "Roboto", sans-serif;
+//   font-weight: 400;
+//   font-size: 16px;
+//   line-height: 22px;
+//   letter-spacing: -0.02em;
+//   color: #121417;
+
+//   opacity: 0.8;
+//   margin: 0;
+// }
+
+// /* ✅ Кнопка */
+// .cta {
+//   width: 267px;
+//   height: 60px;
+
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   border-radius: 12px;
+//   background: #f4c550;
+//   color: #121417;
+//   font-weight: 600;
+//   text-decoration: none;
+
+//   transition: background-color 0.25s ease;
+
+//   &:hover {
+//     background-color: #e2b845;
+//   }
+// }
+
+// .heroRight {
+//   width: 568px;
+//   height: 530px;
+
+//   background: #fbe9ba;
+//   border-radius: 30px;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .heroImg {
+//   width: 339px;
+//   height: 339px;
+//   object-fit: contain;
+//   display: block;
+// }
+
+// .stats {
+//   width: 1312px;
+//   height: 116px;
+
+//   border: 1.5px dashed #f4c550;
+//   border-radius: 30px;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+
+//   padding: 0 40px;
+// }
+
+// .statItem {
+//   display: flex;
+//   align-items: center;
+//   gap: 10px;
+// }
+
+// .statNumber {
+//   font-weight: 700;
+//   font-size: 28px;
+//   line-height: 1.14;
+//   letter-spacing: -0.01em;
+//   color: #121417;
+// }
+
+// .statLabel {
+//   width: 90px;
+//   font-size: 14px;
+//   line-height: 1.28;
+//   color: #121417;
+//   opacity: 0.75;
+// }
+
+// @media (max-width: 1440px) {
+//   .container {
+//     max-width: 100%;
+//     padding: 0 24px;
+//   }
+
+//   .heroLeft,
+//   .heroRight,
+//   .stats {
+//     width: 100%;
+//   }
+
+//   .hero {
+//     flex-direction: column;
+//   }
+
+//   .heroLeft,
+//   .heroRight {
+//     height: auto;
+//     padding: 48px 24px;
+//   }
+
+//   .stats {
+//     height: auto;
+//     padding: 24px;
+//     gap: 24px;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//   }
+// }
+
 /* PAGE */
 .page {
   width: 100%;
 }
 
-/* ✅ Контейнер як у Figma: 1440px frame з відступами 64px */
+/* CONTAINER — як у Figma */
 .container {
   max-width: 1440px;
   margin: 0 auto;
-
-  /* ⬅️ ОЦЕ ГОЛОВНЕ */
-  padding-left: 128px;
-  padding-right: -64px;
+  padding: 0 64px;
 
   display: flex;
   flex-direction: column;
@@ -21,64 +199,63 @@
 .hero {
   display: flex;
   gap: 24px;
-  align-items: stretch;
 }
 
-/* ✅ Ліва картка: 720×530, bg #F8F8F8, radius 30 */
+/* HERO LEFT */
 .heroLeft {
   width: 720px;
   height: 530px;
 
-  background: #f8f8f8;
+  background-color: #f8f8f8;
   border-radius: 30px;
 
-  padding: 98px 64px; /* можна підкрутити, але це близько до макета */
+  padding: 98px 64px;
+
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* ✅ Заголовок як у Figma */
+/* TITLE */
 .title {
+  width: 548px;
+
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 48px;
   line-height: 56px;
   letter-spacing: -0.02em;
-  color: #121417;
 
-  width: 548px; /* ✅ перенос рядків як у макеті */
+  color: #121417;
   margin: 0;
 }
 
-/* ✅ "language" як плашка, без underline */
+/* LANGUAGE HIGHLIGHT */
 .language {
   display: inline-block;
   font-style: italic;
   font-weight: 400;
 
-  background: #fbe9ba;
+  background-color: #fbe9ba;
   border-radius: 12px;
   padding: 0 10px;
-
-  text-decoration: none; /* ✅ щоб точно НЕ підкреслювалося */
 }
 
-/* ✅ Текст як у Figma */
+/* TEXT */
 .text {
-  width: 471px; /* ✅ як у макеті */
+  width: 471px;
+
   font-family: "Roboto", sans-serif;
-  font-weight: 400;
   font-size: 16px;
   line-height: 22px;
   letter-spacing: -0.02em;
-  color: #121417;
 
+  color: #121417;
   opacity: 0.8;
   margin: 0;
 }
 
-/* ✅ Кнопка */
+/* CTA BUTTON */
 .cta {
   width: 267px;
   height: 60px;
@@ -87,10 +264,11 @@
   align-items: center;
   justify-content: center;
 
+  background-color: #f4c550;
   border-radius: 12px;
-  background: #f4c550;
-  color: #121417;
+
   font-weight: 600;
+  color: #121417;
   text-decoration: none;
 
   transition: background-color 0.25s ease;
@@ -100,12 +278,12 @@
   }
 }
 
-/* ✅ Права картка: 568×530 bg #FBE9BA radius 30 */
+/* HERO RIGHT */
 .heroRight {
   width: 568px;
   height: 530px;
 
-  background: #fbe9ba;
+  background-color: #fbe9ba;
   border-radius: 30px;
 
   display: flex;
@@ -113,7 +291,7 @@
   justify-content: center;
 }
 
-/* ✅ Картинка */
+/* IMAGE */
 .heroImg {
   width: 339px;
   height: 339px;
@@ -121,7 +299,7 @@
   display: block;
 }
 
-/* STATS: 1312×116 dashed #F4C550 radius 30 */
+/* STATS */
 .stats {
   width: 1312px;
   height: 116px;
@@ -136,42 +314,38 @@
   padding: 0 40px;
 }
 
-/* ✅ Кожен пункт */
+/* STAT ITEM */
 .statItem {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* ✅ Число */
+/* STAT NUMBER */
 .statNumber {
   font-weight: 700;
   font-size: 28px;
   line-height: 1.14;
   letter-spacing: -0.01em;
+
   color: #121417;
 }
 
-/* ✅ Підпис */
+/* STAT LABEL */
 .statLabel {
-  width: 90px; /* щоб підписи були компактні як у макеті */
+  width: 90px;
+
   font-size: 14px;
   line-height: 1.28;
+
   color: #121417;
   opacity: 0.75;
 }
 
-/* ✅ Респонсив (щоб не ламалось) */
+/* RESPONSIVE */
 @media (max-width: 1440px) {
   .container {
-    max-width: 100%;
     padding: 0 24px;
-  }
-
-  .heroLeft,
-  .heroRight,
-  .stats {
-    width: 100%;
   }
 
   .hero {
@@ -179,13 +353,17 @@
   }
 
   .heroLeft,
-  .heroRight {
+  .heroRight,
+  .stats {
+    width: 100%;
     height: auto;
+  }
+
+  .heroLeft {
     padding: 48px 24px;
   }
 
   .stats {
-    height: auto;
     padding: 24px;
     gap: 24px;
     flex-wrap: wrap;
