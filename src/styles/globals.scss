@@ -44,7 +44,7 @@ a:hover {
 #root,
 #app {
   width: 100%;
-  min-height: 100vh;
+  min-height: auto; /* або просто прибрати рядок */
   margin: 0;
   padding: 0;
   text-align: initial;
