@@ -2,14 +2,26 @@
   width: 100%;
 }
 
+// .container {
+//   max-width: 1440px;
+//   margin: 0 auto;
+//   padding: 0 64px;
+
+//   display: flex;
+//   flex-direction: column;
+//   gap: 24px;
+// }
+
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0 64px;
+
+  /* Збільшуємо padding зліва та справа, 
+     щоб "стиснути" картки сильніше, ніж хедер */
+  // padding: 40px 128px; /* Було 64, стало 128 (додали +64px) */
 
   display: flex;
   flex-direction: column;
-  /* ✅ Змінено з 24px на 31px (відступ між Hero та Stats) */
   gap: 31px;
 }
 
@@ -17,8 +29,7 @@
 
 .hero {
   display: flex;
-  /* ✅ Змінено з 24px на 27px (відступ між карткою та текстом) */
-  gap: 27px;
+  gap: 24px;
 }
 
 .heroLeft {
@@ -32,6 +43,7 @@
 
   display: flex;
   flex-direction: column;
+  /* ❌ gap прибрали */
 }
 
 .title {
@@ -42,7 +54,7 @@
   letter-spacing: -0.02em;
   color: #121417;
 
-  margin: 0 0 32px;
+  margin: 0 0 32px; /* ✅ 32px до тексту */
 
   .language {
     display: inline-block;
@@ -63,7 +75,7 @@
   letter-spacing: -0.02em;
   color: #121417;
 
-  margin: 0 0 64px;
+  margin: 0 0 64px; /* ✅ 64px до кнопки */
 }
 
 .cta {
