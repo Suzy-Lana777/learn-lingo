@@ -1,28 +1,27 @@
 .header {
   background: #fff;
   width: 100%;
-  justify-content: center;
 }
+
+/* Використовуємо той самий container що і в hero */
 
 .container {
   width: 100%;
   max-width: 1440px;
-
+  margin: 0 auto;
+  padding: 20px 64px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  padding: 20px 64px;
-  // padding: 20px 67px 20px 64px;
 }
 
 .logo {
   display: flex;
   align-items: center;
   gap: 8px;
-
   text-decoration: none;
   color: #121417;
+  margin-left: 64px;
 }
 
 .logoText {
@@ -36,11 +35,11 @@
   display: flex;
   align-items: center;
   gap: 28px;
-
   font-weight: 400;
   font-size: 16px;
   line-height: 1.25;
   color: #121417;
+  margin-left: 160px;
 }
 
 .link {
@@ -53,60 +52,60 @@
   text-underline-offset: 6px;
 }
 
+// 2. Виправляємо блок дій та кнопку реєстрації */
+
 .actions {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-right: 67px;
 }
 
 .loginBtn {
   display: flex;
   align-items: center;
   gap: 8px;
-
   padding: 14px 16px;
   border-radius: 12px;
-
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
   color: #121417;
-
   background: transparent;
   border: none;
   cursor: pointer;
+  transition: 0.25s ease;
 
   &:hover {
     background: #121417;
+
     color: #fff;
   }
 }
 
-/* два svg поруч */
 .loginIconWrap {
   display: inline-flex;
   align-items: center;
-  // gap: 6px;
 }
 
 .registerBtn {
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 14px 39px;
   border-radius: 12px;
-
   font-weight: 700;
   font-size: 16px;
   line-height: 1.25;
-
+  color: #121417;
   background: transparent;
   border: none;
   cursor: pointer;
+  transition: 0.25s ease;
 
   &:hover {
     background: #121417;
+
     color: #fff;
   }
 }

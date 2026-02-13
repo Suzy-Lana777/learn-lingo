@@ -1,6 +1,6 @@
-.page {
-  width: 100%;
-}
+// .page {
+//   width: 100%;
+// }
 
 // .container {
 //   max-width: 1440px;
@@ -9,52 +9,225 @@
 
 //   display: flex;
 //   flex-direction: column;
-//   gap: 24px;
+//   gap: 31px;
 // }
+
+// .hero {
+//   display: flex;
+//   gap: 27px;
+// }
+
+// .heroLeft {
+//   flex: 1;
+//   max-width: 720px;
+//   min-height: 530px;
+//   background-color: #f8f8f8;
+//   border-radius: 30px;
+
+//   padding: 98px 64px;
+
+//   display: flex;
+//   flex-direction: column;
+//   gap: 32px;
+// }
+
+// .title {
+//   font-family: "Roboto", sans-serif;
+//   font-weight: 500;
+//   font-size: 48px;
+//   line-height: 56px;
+//   letter-spacing: -0.02em;
+
+//   color: #121417;
+//   margin: 0;
+
+//   .language {
+//     display: inline-block;
+//     font-style: italic;
+//     font-weight: 400;
+//     background-color: #fbe9ba;
+//     border-radius: 12px;
+//     padding: 0 10px;
+//   }
+// }
+
+// .text {
+//   max-width: 471px;
+
+//   font-family: "Roboto", sans-serif;
+//   font-size: 16px;
+//   line-height: 22px;
+//   letter-spacing: -0.02em;
+
+//   color: #121417;
+
+//   margin: 0;
+// }
+
+// .cta {
+//   width: 267px;
+//   height: 60px;
+
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+
+//   background-color: #f4c550;
+//   border-radius: 12px;
+//   font-weight: 700;
+//   font-size: 18px;
+//   color: #121417;
+//   text-decoration: none;
+
+//   transition: background-color 0.25s ease;
+
+//   &:hover {
+//     background-color: #e2b845;
+//     color: #121417;
+//   }
+// }
+
+// .heroRight {
+//   flex: 1;
+//   max-width: 568px;
+//   height: 530px;
+
+//   background-color: #fbe9ba;
+//   border-radius: 30px;
+//   position: relative;
+//   overflow: hidden;
+// }
+
+// .heroImg {
+//   position: absolute;
+//   top: 80px;
+//   left: 50%;
+//   transform: translateX(-50%);
+
+//   width: 339px;
+//   height: auto;
+//   z-index: 1;
+// }
+
+// .appleIcon {
+//   position: absolute;
+//   top: 298px;
+//   left: 50%;
+//   transform: translateX(-50%);
+
+//   width: 391px;
+//   height: 304px;
+//   z-index: 2;
+// }
+
+// .stats {
+//   position: relative;
+//   width: 100%;
+//   min-height: 116px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+//   padding: 40px;
+// }
+
+// .statsBorder {
+//   position: absolute;
+//   inset: 0;
+//   width: 100%;
+//   height: 100%;
+//   pointer-events: none;
+
+//   rect {
+//     fill: none;
+//     stroke: #f4c550;
+//     stroke-width: 3;
+//     stroke-dasharray: 10 10;
+//   }
+// }
+
+// .statItem {
+//   display: flex;
+//   align-items: center;
+//   gap: 16px;
+//   z-index: 1;
+// }
+
+// .statNumber {
+//   font-weight: 700;
+//   font-size: 28px;
+
+//   color: #121417;
+// }
+
+// .statLabel {
+//   max-width: 90px;
+
+//   font-size: 14px;
+//   line-height: 18px;
+
+//   color: #121417;
+//   opacity: 0.7;
+// }
+
+// @media (max-width: 1200px) {
+//   .hero {
+//     flex-direction: column;
+//   }
+
+//   .heroLeft,
+//   .heroRight {
+//     max-width: 100%;
+//     width: 100%;
+//   }
+
+//   .stats {
+//     flex-wrap: wrap;
+//     gap: 24px;
+//   }
+// }
+
+.page {
+  width: 100%;
+}
 
 .container {
   max-width: 1440px;
   margin: 0 auto;
-
-  /* Збільшуємо padding зліва та справа, 
-     щоб "стиснути" картки сильніше, ніж хедер */
-  // padding: 40px 128px; /* Було 64, стало 128 (додали +64px) */
+  padding: 0 64px;
 
   display: flex;
   flex-direction: column;
   gap: 31px;
 }
 
-/* ===== HERO ===== */
-
 .hero {
   display: flex;
-  gap: 24px;
+  gap: 27px;
 }
 
 .heroLeft {
   flex: 1;
   max-width: 720px;
   min-height: 530px;
-
   background-color: #f8f8f8;
   border-radius: 30px;
+
   padding: 98px 64px;
 
   display: flex;
   flex-direction: column;
-  /* ❌ gap прибрали */
 }
 
+/* 32px між заголовком і текстом */
 .title {
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 48px;
   line-height: 56px;
   letter-spacing: -0.02em;
-  color: #121417;
 
-  margin: 0 0 32px; /* ✅ 32px до тексту */
+  color: #121417;
+  margin: 0 0 32px 0;
 
   .language {
     display: inline-block;
@@ -73,9 +246,11 @@
   font-size: 16px;
   line-height: 22px;
   letter-spacing: -0.02em;
+
   color: #121417;
 
-  margin: 0 0 64px; /* ✅ 64px до кнопки */
+  /* 64px між текстом і кнопкою */
+  margin: 0 0 64px 0;
 }
 
 .cta {
@@ -88,7 +263,6 @@
 
   background-color: #f4c550;
   border-radius: 12px;
-
   font-weight: 700;
   font-size: 18px;
   color: #121417;
@@ -102,8 +276,6 @@
   }
 }
 
-/* ===== HERO RIGHT ===== */
-
 .heroRight {
   flex: 1;
   max-width: 568px;
@@ -111,7 +283,6 @@
 
   background-color: #fbe9ba;
   border-radius: 30px;
-
   position: relative;
   overflow: hidden;
 }
@@ -138,17 +309,13 @@
   z-index: 2;
 }
 
-/* ===== STATS ===== */
-
 .stats {
   position: relative;
   width: 100%;
   min-height: 116px;
-
   display: flex;
   align-items: center;
   justify-content: space-around;
-
   padding: 40px;
 }
 
@@ -177,26 +344,21 @@
 .statNumber {
   font-weight: 700;
   font-size: 28px;
+
   color: #121417;
 }
 
 .statLabel {
   max-width: 90px;
+
   font-size: 14px;
   line-height: 18px;
+
   color: #121417;
   opacity: 0.7;
 }
 
-/* ===== RESPONSIVE ===== */
-
 @media (max-width: 1200px) {
-  .stats {
-    margin-bottom: 32px;
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-
   .hero {
     flex-direction: column;
   }
@@ -205,5 +367,10 @@
   .heroRight {
     max-width: 100%;
     width: 100%;
+  }
+
+  .stats {
+    flex-wrap: wrap;
+    gap: 24px;
   }
 }
