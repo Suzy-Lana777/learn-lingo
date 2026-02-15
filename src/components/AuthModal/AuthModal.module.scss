@@ -5,21 +5,89 @@
   gap: 20px;
 }
 
-.tabs {
+// .tabs {
+//   display: flex;
+//   gap: 12px;
+// }
+
+// .tabs button {
+//   flex: 1;
+//   padding: 12px 14px;
+//   border-radius: 12px;
+//   border: 1px solid rgba(0, 0, 0, 0.1);
+//   background: transparent;
+//   font-weight: 600;
+// }
+
+// .active {
+//   background: #f4c550;
+//   border-color: #f4c550;
+// }
+
+.authForm {
+  width: 438px;
+}
+
+.authForm > h2 {
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #121417;
+  margin-bottom: 20px;
+}
+
+.authForm > p {
+  margin-bottom: 40px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: rgba(18, 20, 23, 0.8);
+}
+
+.form {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
 }
 
-.tabs button {
-  flex: 1;
-  padding: 12px 14px;
+.form > input {
+  width: 100%;
+  border: 1px solid rgba(18, 20, 23, 0.1);
   border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: transparent;
-  font-weight: 600;
+  padding: 16px 18px;
+  height: 54px;
+  outline: none;
 }
 
-.active {
-  background: #f4c550;
+.form > input:focus {
   border-color: #f4c550;
+}
+
+.form > span {
+  font-size: 12px;
+  color: #d80027;
+}
+
+.form > button {
+  margin-top: 20px;
+  height: 54px;
+  border-radius: 12px;
+  border: none;
+  background: #f4c550;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.switchText {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.switchText button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
 }

@@ -2,7 +2,11 @@
 
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
-import { getAuth } from "firebase/auth";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY as string,
@@ -19,3 +23,13 @@ export const app = initializeApp(firebaseConfig);
 
 export const db = getDatabase(app);
 export const auth = getAuth(app);
+
+// 🔐 LOGIN
+export const loginUser = async (email: string, password: string) => {
+  return await signInWithEmailAndPassword(auth, email, password);
+};
+
+// 📝 REGISTER
+export const registerUser = async (email: string, password: string) => {
+  return await createUserWithEmailAndPassword(auth, email, password);
+};
