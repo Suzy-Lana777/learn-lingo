@@ -8,6 +8,7 @@ const linkClass = ({ isActive }: { isActive: boolean }) =>
 
 export default function Header() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<"login" | "register">("login");
 
   return (
     <>
@@ -31,10 +32,14 @@ export default function Header() {
           </nav>
 
           <div className={styles.actions}>
+            {/* LOGIN */}
             <button
               type="button"
               className={styles.loginBtn}
-              onClick={() => setIsAuthOpen(true)}
+              onClick={() => {
+                setAuthMode("login");
+                setIsAuthOpen(true);
+              }}
             >
               <span className={styles.loginIconWrap}>
                 <svg width="12" height="11">
@@ -44,14 +49,17 @@ export default function Header() {
                   <use href="/icons/sprite.svg#icon-login-door" />
                 </svg>
               </span>
-
               <span>Log in</span>
             </button>
 
+            {/* REGISTRATION */}
             <button
               type="button"
               className={styles.registerBtn}
-              onClick={() => setIsAuthOpen(true)}
+              onClick={() => {
+                setAuthMode("register");
+                setIsAuthOpen(true);
+              }}
             >
               Registration
             </button>
@@ -60,7 +68,12 @@ export default function Header() {
       </header>
 
       {/* 👇 МОДАЛКА */}
-      {isAuthOpen && <AuthModal onClose={() => setIsAuthOpen(false)} />}
+      {isAuthOpen && (
+        <AuthModal
+          onClose={() => setIsAuthOpen(false)}
+          initialMode={authMode}
+        />
+      )}
     </>
   );
 }
