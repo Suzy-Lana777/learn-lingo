@@ -67,7 +67,7 @@ export default function Header() {
         </div>
       </header>
 
-      {/* 👇 МОДАЛКА */}
+      {/* МОДАЛКА */}
       {isAuthOpen && (
         <AuthModal
           onClose={() => setIsAuthOpen(false)}
