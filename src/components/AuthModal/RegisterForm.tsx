@@ -33,7 +33,8 @@ export default function RegisterForm({ onSuccess, onSwitch }: Props) {
 
   const onSubmit = async (data: RegisterFormValues) => {
     try {
-      await registerUser(data.email, data.password);
+      await registerUser(data.name, data.email, data.password);
+
       onSuccess();
     } catch (error) {
       if (error instanceof FirebaseError) {
