@@ -20,8 +20,18 @@
 
 //   // 🔹 Слідкуємо за станом авторизації
 //   useEffect(() => {
-//     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-//       setUser(currentUser);
+//     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
+//       if (currentUser) {
+//         // Якщо displayName ще не підтягнувся (після реєстрації), робимо reload
+//         if (!currentUser.displayName) {
+//           await currentUser.reload();
+//         }
+//         // ВАЖЛИВО: Передаємо копію об'єкта {...auth.currentUser},
+//         // щоб React "побачив" зміни і оновив ім'я на екрані
+//         setUser({ ...auth.currentUser } as User);
+//       } else {
+//         setUser(null);
+//       }
 //     });
 
 //     return () => unsubscribe();
@@ -68,8 +78,9 @@
 //           <div className={styles.actions}>
 //             {user ? (
 //               /* 🔹 Якщо користувач увійшов */
-//               <>
+//               <div className={styles.userMenu}>
 //                 <span className={styles.userName}>
+//                   {/* Пріоритет на displayName */}
 //                   {user.displayName || user.email?.split("@")[0]}
 //                 </span>
 
@@ -88,7 +99,7 @@
 //                   </span>
 //                   <span>Log out</span>
 //                 </button>
-//               </>
+//               </div>
 //             ) : (
 //               /* 🔹 Якщо гість */
 //               <>
@@ -155,19 +166,14 @@ export default function Header() {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
 
-  // 🔹 Поточний користувач
   const [user, setUser] = useState<User | null>(null);
 
-  // 🔹 Слідкуємо за станом авторизації
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
       if (currentUser) {
-        // Якщо displayName ще не підтягнувся (після реєстрації), робимо reload
         if (!currentUser.displayName) {
           await currentUser.reload();
         }
-        // ВАЖЛИВО: Передаємо копію об'єкта {...auth.currentUser},
-        // щоб React "побачив" зміни і оновив ім'я на екрані
         setUser({ ...auth.currentUser } as User);
       } else {
         setUser(null);
@@ -177,7 +183,6 @@ export default function Header() {
     return () => unsubscribe();
   }, []);
 
-  // 🔹 Logout
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -190,7 +195,6 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.container}>
-          {/* LOGO */}
           <NavLink to="/" className={styles.logo}>
             <svg width="28" height="28" className={styles.logoIcon}>
               <use href="/icons/sprite.svg#flag-ua" />
@@ -202,12 +206,9 @@ export default function Header() {
             <NavLink to="/" className={linkClass} end>
               Home
             </NavLink>
-
             <NavLink to="/teachers" className={linkClass}>
               Teachers
             </NavLink>
-
-            {/* Favorites тільки для залогіненого */}
             {user && (
               <NavLink to="/favorites" className={linkClass}>
                 Favorites
@@ -217,10 +218,8 @@ export default function Header() {
 
           <div className={styles.actions}>
             {user ? (
-              /* 🔹 Якщо користувач увійшов */
               <div className={styles.userMenu}>
                 <span className={styles.userName}>
-                  {/* Пріоритет на displayName */}
                   {user.displayName || user.email?.split("@")[0]}
                 </span>
 
@@ -241,7 +240,6 @@ export default function Header() {
                 </button>
               </div>
             ) : (
-              /* 🔹 Якщо гість */
               <>
                 <button
                   type="button"
@@ -278,7 +276,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* МОДАЛКА */}
       {isAuthOpen && (
         <AuthModal
           onClose={() => setIsAuthOpen(false)}
