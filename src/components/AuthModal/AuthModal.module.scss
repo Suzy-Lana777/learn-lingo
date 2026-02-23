@@ -5,25 +5,6 @@
   gap: 20px;
 }
 
-// .tabs {
-//   display: flex;
-//   gap: 12px;
-// }
-
-// .tabs button {
-//   flex: 1;
-//   padding: 12px 14px;
-//   border-radius: 12px;
-//   border: 1px solid rgba(0, 0, 0, 0.1);
-//   background: transparent;
-//   font-weight: 600;
-// }
-
-// .active {
-//   background: #f4c550;
-//   border-color: #f4c550;
-// }
-
 .authForm {
   width: 438px;
 }
@@ -90,4 +71,49 @@
   border: none;
   font-weight: 600;
   cursor: pointer;
+}
+
+/* ===== PASSWORD FIELD ===== */
+
+.passwordField {
+  position: relative;
+  width: 100%;
+}
+
+.passwordField input {
+  width: 100%;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  padding: 16px 48px 16px 18px; /* місце справа для іконки */
+  height: 54px;
+  outline: none;
+}
+
+.passwordField input:focus {
+  border-color: #f4c550;
+}
+
+/* ===== EYE BUTTON ===== */
+
+.eyeBtn {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyeBtn svg {
+  width: 22px;
+  height: 22px;
 }
