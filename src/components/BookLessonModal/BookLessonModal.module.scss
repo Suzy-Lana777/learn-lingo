@@ -15,16 +15,21 @@
 .modal {
   background-color: #fff;
   border-radius: 30px;
-  padding: 64px; // Великі відступи як у Figma
+  padding: 64px;
   width: 100%;
   max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
   &::-webkit-scrollbar {
-    width: 0;
-  } // Ховаємо скрол для чистоти
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(18, 20, 23, 0.1);
+    border-radius: 10px;
+  }
 }
 
 .closeBtn {
@@ -35,6 +40,12 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  color: #121417;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .title {
@@ -53,117 +64,129 @@
   margin-bottom: 20px;
 }
 
-.teacher {
+.teacherInfo {
   display: flex;
   gap: 14px;
   align-items: center;
   margin-bottom: 40px;
 
-  .teacherAva img {
+  .avatar {
     width: 44px;
     height: 44px;
     border-radius: 50%;
     object-fit: cover;
   }
 
-  .teacherName p {
+  .teacherLabel {
+    display: block;
     font-weight: 500;
     font-size: 12px;
     color: #8a8a89;
     margin-bottom: 4px;
   }
 
-  .teacherName span {
+  .teacherName {
     font-weight: 500;
     font-size: 16px;
     color: #121417;
+    margin: 0;
   }
 }
 
 .form {
   display: flex;
   flex-direction: column;
+}
 
-  fieldset {
-    border: none;
-    padding: 0;
-    margin: 0 0 40px 0;
+.radioGroup {
+  margin-bottom: 40px;
 
-    legend {
-      font-weight: 500;
-      font-size: 24px;
-      line-height: 1.33;
-      color: #121417;
-      margin-bottom: 20px;
-    }
-
-    label {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 16px;
-      margin-bottom: 16px;
-      cursor: pointer;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      input {
-        display: none;
-      } // Ховаємо дефолтний кружечок
-    }
+  .radioTitle {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.33;
+    color: #121417;
+    margin-bottom: 20px;
   }
 }
 
-/* Стилізація радіокнопок через SVG */
-.radio,
-.ring {
-  flex-shrink: 0;
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #121417;
+  cursor: pointer;
+  margin-bottom: 16px;
+  position: relative;
+
+  input[type="radio"] {
+    display: none; // Повністю ховаємо стандартний інпут
+  }
+
+  /* Твій кастомний дизайн радіокнопки на чистому CSS */
+  .customRadio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(18, 20, 23, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s ease;
+
+    &::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background-color: #f4c550;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  }
+
+  /* Стан при виборі */
+  input:checked + .customRadio {
+    border-color: #f4c550;
+
+    &::after {
+      opacity: 1;
+    }
+  }
+
+  &:hover .customRadio {
+    border-color: #f4c550;
+  }
 }
 
-.radio {
-  display: none;
-  color: #f4c550;
-}
-.ring {
-  stroke: rgba(18, 20, 23, 0.2);
-  fill: none;
-}
-
-input:checked ~ .radio {
-  display: block;
-}
-input:checked ~ .ring {
-  display: none;
-}
-
-.formInputs {
+.inputsContainer {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.inputWrapper {
+.field {
   width: 100%;
+}
 
-  input {
-    width: 100%;
-    height: 54px;
-    padding: 16px 18px;
-    border: 1px solid rgba(18, 20, 23, 0.1);
-    border-radius: 12px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.2s;
+.input {
+  width: 100%;
+  height: 54px;
+  padding: 16px 18px;
+  border: 1px solid rgba(18, 20, 23, 0.1);
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
 
-    &:focus {
-      border-color: #f4c550;
-    }
+  &:focus {
+    border-color: #f4c550;
   }
 }
 
-.error {
+.errorMsg {
+  display: block;
   color: #ef5050;
   font-size: 12px;
   margin-top: 4px;
@@ -180,7 +203,7 @@ input:checked ~ .ring {
   font-size: 18px;
   color: #121417;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: #ffc531;

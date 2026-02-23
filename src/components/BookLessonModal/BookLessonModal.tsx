@@ -1,72 +1,99 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { getDatabase, ref, push } from "firebase/database";
 
+import { app } from "../../services/firebase";
 import type { Teacher } from "../../types/teacher";
 import styles from "./BookLessonModal.module.scss";
 
-// 1. Валідація схеми
-const bookFormSchema = yup.object({
-  reason: yup.string().required("Choose a reason"),
-  name: yup.string().required("Full name is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
-  phone: yup.string().required("Phone number is required"),
+// 1. Схема валідації (згідно з ТЗ: всі поля обов'язкові)
+const schema = yup.object().shape({
+  reason: yup.string().required("Please select a reason for your lesson"),
+  fullName: yup.string().min(3, "Too short").required("Full name is required"),
+  email: yup
+    .string()
+    .email("Invalid email address")
+    .required("Email is required"),
+  phone: yup
+    .string()
+    .matches(/^[0-9]+$/, "Must be only digits")
+    .min(10, "Too short")
+    .required("Phone number is required"),
 });
 
-// 2. Типи для значень форми
-export type BookFormValues = {
+interface IFormInput {
   reason: string;
-  name: string;
+  fullName: string;
   email: string;
   phone: string;
-};
+}
 
-// 3. Типи для Props (тепер вони явно використовуються)
 interface BookLessonModalProps {
   teacher: Teacher;
   onClose: () => void;
 }
 
-export default function BookLessonModal({
-  teacher,
-  onClose,
-}: BookLessonModalProps) {
-  const [isBooked, setIsBooked] = useState<boolean>(false);
-
+const BookLessonModal = ({ teacher, onClose }: BookLessonModalProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<BookFormValues>({
-    resolver: yupResolver(bookFormSchema),
-    defaultValues: {
-      reason: "career",
-    },
+    reset,
+  } = useForm<IFormInput>({
+    resolver: yupResolver(schema),
+    defaultValues: { reason: "career" },
   });
 
+  // Закриття модалки (ТЗ пункти 11)
   useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = "auto";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, [onClose]);
 
-  const onSubmit = (data: BookFormValues) => {
-    console.log("Form Data:", data);
-    setIsBooked(true);
+  // 2. Функція відправки даних у Firebase
+  const onFormSubmit: SubmitHandler<IFormInput> = async data => {
+    try {
+      const db = getDatabase(app);
+      const bookingsRef = ref(db, "bookings"); // Гілка "bookings" у твоїй базі
 
-    setTimeout(() => {
-      setIsBooked(false);
+      await push(bookingsRef, {
+        ...data,
+        teacherName: `${teacher.name} ${teacher.surname}`,
+        teacherId: teacher.id || `${teacher.name}_${teacher.surname}`, // ID вчителя для зв'язку
+        createdAt: new Date().toISOString(),
+      });
+
+      alert(
+        "Booking successful! Your data is saved in Firebase Realtime Database.",
+      );
+      reset();
       onClose();
-    }, 3000);
+    } catch (error) {
+      console.error("Firebase submit error:", error);
+      alert("Something went wrong. Please check your connection.");
+    }
   };
 
   return (
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
-        <button type="button" className={styles.closeBtn} onClick={onClose}>
+        <button
+          className={styles.closeBtn}
+          onClick={onClose}
+          aria-label="close"
+        >
           <svg
             width="32"
             height="32"
@@ -76,7 +103,7 @@ export default function BookLessonModal({
           >
             <path
               d="M24 8L8 24M8 8L24 24"
-              stroke="#121417"
+              stroke="currentColor"
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -84,110 +111,94 @@ export default function BookLessonModal({
           </svg>
         </button>
 
-        <div className={styles.bookForm}>
-          {!isBooked ? (
-            <>
-              <h2 className={styles.title}>Book trial lesson</h2>
-              <p className={styles.description}>
-                Our experienced tutor will assess your current language level,
-                discuss your learning goals, and tailor the lesson to your
-                specific needs.
-              </p>
+        <h2 className={styles.title}>Book trial lesson</h2>
+        <p className={styles.description}>
+          Our experienced tutor will assess your current language level, discuss
+          your learning goals, and tailor the lesson to your specific needs.
+        </p>
 
-              <div className={styles.teacher}>
-                <div className={styles.teacherAva}>
-                  <img
-                    src={teacher.avatar_url}
-                    alt={`${teacher.name} avatar`}
-                  />
-                </div>
-                <div className={styles.teacherName}>
-                  <p>Your teacher</p>
-                  <span>
-                    {teacher.name} {teacher.surname}
-                  </span>
-                </div>
-              </div>
-
-              <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-                <fieldset>
-                  <legend>
-                    What is your main reason for learning English?
-                  </legend>
-
-                  {[
-                    { id: "career", label: "Career and business" },
-                    { id: "kids", label: "Lesson for kids" },
-                    { id: "abroad", label: "Living abroad" },
-                    { id: "exams", label: "Exams and coursework" },
-                    { id: "travel", label: "Culture, travel or hobby" },
-                  ].map(item => (
-                    <label key={item.id}>
-                      <input
-                        type="radio"
-                        value={item.id}
-                        {...register("reason")}
-                      />
-                      {/* Використовуємо твої SVG з спрайту або напряму */}
-                      <svg width={24} height={24} className={styles.radio}>
-                        <use href="/symbol-defs.svg#RadioButton" />
-                      </svg>
-                      <svg width={24} height={24} className={styles.ring}>
-                        <use href="/symbol-defs.svg#ring" />
-                      </svg>
-                      {item.label}
-                    </label>
-                  ))}
-                  {errors.reason && (
-                    <p className={styles.error}>{errors.reason.message}</p>
-                  )}
-                </fieldset>
-
-                <div className={styles.inputsStack}>
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    {...register("name")}
-                  />
-                  {errors.name && (
-                    <p className={styles.error}>{errors.name.message}</p>
-                  )}
-
-                  <input
-                    type="email"
-                    placeholder="Email"
-                    {...register("email")}
-                  />
-                  {errors.email && (
-                    <p className={styles.error}>{errors.email.message}</p>
-                  )}
-
-                  <input
-                    type="tel"
-                    placeholder="Phone number"
-                    {...register("phone")}
-                  />
-                  {errors.phone && (
-                    <p className={styles.error}>{errors.phone.message}</p>
-                  )}
-                </div>
-
-                <button type="submit" className={styles.submitBtn}>
-                  Book
-                </button>
-              </form>
-            </>
-          ) : (
-            <div className={styles.successBox}>
-              <h2 className={styles.title}>Thank you!</h2>
-              <p className={styles.description}>
-                Your booking has been accepted. Our administrator will contact
-                you shortly.
-              </p>
-            </div>
-          )}
+        <div className={styles.teacherInfo}>
+          <img
+            src={teacher.avatar_url}
+            alt={teacher.name}
+            className={styles.avatar}
+          />
+          <div>
+            <span className={styles.teacherLabel}>Your teacher</span>
+            <h3 className={styles.teacherName}>
+              {teacher.name} {teacher.surname}
+            </h3>
+          </div>
         </div>
+
+        <form onSubmit={handleSubmit(onFormSubmit)} className={styles.form}>
+          <div className={styles.radioGroup}>
+            <p className={styles.radioTitle}>
+              What is your main reason for learning English?
+            </p>
+            {[
+              { id: "career", label: "Career and business" },
+              { id: "kids", label: "Lesson for kids" },
+              { id: "abroad", label: "Living abroad" },
+              { id: "exams", label: "Exams and coursework" },
+              { id: "travel", label: "Culture, travel or hobby" },
+            ].map(option => (
+              <label key={option.id} className={styles.radioLabel}>
+                <input type="radio" value={option.id} {...register("reason")} />
+                <span className={styles.customRadio}></span>
+                {option.label}
+              </label>
+            ))}
+            {errors.reason && (
+              <span className={styles.errorMsg}>{errors.reason.message}</span>
+            )}
+          </div>
+
+          <div className={styles.inputsContainer}>
+            <div className={styles.field}>
+              <input
+                {...register("fullName")}
+                placeholder="Full Name"
+                className={styles.input}
+              />
+              {errors.fullName && (
+                <span className={styles.errorMsg}>
+                  {errors.fullName.message}
+                </span>
+              )}
+            </div>
+
+            <div className={styles.field}>
+              <input
+                {...register("email")}
+                placeholder="Email"
+                className={styles.input}
+              />
+              {errors.email && (
+                <span className={styles.errorMsg}>{errors.email.message}</span>
+              )}
+            </div>
+
+            <div className={styles.field}>
+              <input
+                {...register("phone")}
+                placeholder="Phone number"
+                className={styles.input}
+              />
+              {errors.phone && (
+                <span className={styles.errorMsg}>{errors.phone.message}</span>
+              )}
+            </div>
+          </div>
+
+          <button type="submit" className={styles.submitBtn}>
+            Book
+          </button>
+        </form>
       </div>
     </div>
   );
-}
+};
+
+export default BookLessonModal;
+
