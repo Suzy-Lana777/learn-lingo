@@ -1,6 +1,7 @@
 import { useMemo, useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
+import toast from "react-hot-toast";
 import BookLessonModal from "../BookLessonModal/BookLessonModal";
 
 import { auth } from "../../services/firebase";
@@ -24,7 +25,6 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
   const [user, setUser] = useState<User | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 1. Стежимо за станом авторизації
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
@@ -32,7 +32,6 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
     return () => unsubscribe();
   }, []);
 
-  // 2. Перевіряємо, чи вчитель в улюблених при завантаженні
   useEffect(() => {
     if (!user) {
       setIsFav(false);
@@ -66,10 +65,14 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
     [teacher.conditions],
   );
 
-  // 3. Функція перемикання сердечка
+  // ✅ ФУНКЦІЯ ПЕРЕМИКАННЯ СЕРДЕЧКА (БЕЗ ЖОРСТКИХ СТИЛІВ)
   const toggleFavorite = async () => {
     if (!user) {
-      alert("Please log in to add teachers to your favorites!");
+      // Видалили style, щоб підхопився червоний фон з App.tsx
+      toast.error("Please log in to add teachers to your favorites!", {
+        duration: 4000,
+        icon: "🔒",
+      });
       return;
     }
 
@@ -79,11 +82,17 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
     try {
       if (previousFav) {
         await removeFromFavorites(user.uid, teacher.id);
+        toast.success("Removed from favorites", { icon: "🗑️" });
       } else {
         await addToFavorites(user.uid, teacher.id);
+        // Видалили style, щоб підхопився зелений фон з App.tsx
+        toast.success(`${teacher.name} added to favorites!`, {
+          icon: "❤️",
+        });
       }
     } catch (error) {
       setIsFav(previousFav);
+      toast.error("Failed to update favorites. Try again later.");
       console.error("Failed to update favorites:", error);
     }
   };
@@ -164,7 +173,6 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
               </p>
             </div>
 
-            {/* ✅ КНОПКА СЕРДЕЧКА */}
             <button
               type="button"
               className={styles.favBtn}
@@ -176,7 +184,6 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
                 height="26"
                 viewBox="0 0 26 26"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg"
                 style={{ transition: "all 0.3s ease" }}
               >
                 <path
@@ -196,16 +203,13 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
 
         <div className={styles.teacherInfoBox}>
           <p>
-            Speaks:&nbsp;
-            <span className={styles.underline}>{speaksText}</span>
+            Speaks:&nbsp;<span className={styles.underline}>{speaksText}</span>
           </p>
           <p>
-            Lesson info:&nbsp;
-            <span>{teacher.lesson_info}</span>
+            Lesson info:&nbsp;<span>{teacher.lesson_info}</span>
           </p>
           <p>
-            Conditions:&nbsp;
-            <span>{conditionsText}</span>
+            Conditions:&nbsp;<span>{conditionsText}</span>
           </p>
         </div>
 
@@ -256,9 +260,7 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
             return (
               <li
                 key={`${teacher.id}-${lvl}`}
-                className={`${styles.levelItem} ${
-                  isActive ? styles.activeLevel : ""
-                }`}
+                className={`${styles.levelItem} ${isActive ? styles.activeLevel : ""}`}
               >
                 #{lvl}
               </li>
@@ -279,7 +281,6 @@ export default function TeacherCard({ teacher, selectedLevel }: Props) {
         )}
       </div>
 
-      {/* ✅ МОДАЛЬНЕ ВІКНО */}
       {isModalOpen && (
         <BookLessonModal
           teacher={teacher}

@@ -10,16 +10,23 @@ import Favorites from "./pages/Favorites/Favorites";
 export default function App() {
   return (
     <>
-      {/* Toaster буде "слухати" виклики toast.success/error з будь-якого компонента */}
       <Toaster
         position="top-right"
-        reverseOrder={false}
         toastOptions={{
           duration: 3000,
           style: {
             borderRadius: "12px",
-            background: "#121417",
             color: "#fff",
+          },
+          success: {
+            style: {
+              background: "#388e3c",
+            },
+          },
+          error: {
+            style: {
+              background: "#d32f2f",
+            },
           },
         }}
       />
