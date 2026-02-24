@@ -1,119 +1,237 @@
-.wrap {
-  width: 420px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+// .wrap {
+//   width: 420px;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 20px;
+// }
+
+// .authForm {
+//   width: 438px;
+// }
+
+// .authForm > h2 {
+//   font-weight: 500;
+//   font-size: 40px;
+//   line-height: 1.2;
+//   letter-spacing: -0.02em;
+//   color: #121417;
+//   margin-bottom: 20px;
+// }
+
+// .authForm > p {
+//   margin-bottom: 40px;
+//   font-weight: 400;
+//   font-size: 16px;
+//   line-height: 1.4;
+//   color: rgba(18, 20, 23, 0.8);
+// }
+
+// .form {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 18px;
+//   width: 100%;
+// }
+
+// .form > input {
+//   width: 100%;
+//   border: 1px solid rgba(18, 20, 23, 0.1);
+//   border-radius: 12px;
+//   padding: 16px 18px;
+//   height: 54px;
+//   outline: none;
+// }
+
+// .form > input:focus {
+//   border-color: #f4c550;
+// }
+
+// .form > span {
+//   font-size: 12px;
+//   color: #d80027;
+// }
+
+// .form > button {
+//   margin-top: 20px;
+//   height: 54px;
+//   border-radius: 12px;
+//   border: none;
+//   background: #f4c550;
+//   font-weight: 700;
+//   cursor: pointer;
+// }
+
+// .switchText {
+//   margin-top: 20px;
+//   font-size: 14px;
+// }
+
+// .switchText button {
+//   background: none;
+//   border: none;
+//   font-weight: 600;
+//   cursor: pointer;
+// }
+
+// /* ===== PASSWORD FIELD ===== */
+
+// .passwordField {
+//   position: relative;
+//   width: 100%;
+// }
+
+// .passwordField input {
+//   width: 100%;
+//   border: 1px solid rgba(18, 20, 23, 0.1);
+//   border-radius: 12px;
+//   padding: 16px 48px 16px 18px; /* місце справа для іконки */
+//   height: 54px;
+//   outline: none;
+// }
+
+// .passwordField input:focus {
+//   border-color: #f4c550;
+// }
+
+// /* ===== EYE BUTTON ===== */
+
+// .eyeBtn {
+//   position: absolute;
+//   top: 50%;
+//   right: 16px;
+//   transform: translateY(-50%);
+//   width: 24px;
+//   height: 24px;
+
+//   background: transparent;
+//   border: none;
+//   padding: 0;
+//   cursor: pointer;
+
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+// .eyeBtn svg {
+//   width: 22px;
+//   height: 22px;
+// }
 
 .authForm {
-  width: 438px;
-}
+  padding: 20px;
+  max-width: 438px;
 
-.authForm > h2 {
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: #121417;
-  margin-bottom: 20px;
-}
+  h2 {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
 
-.authForm > p {
-  margin-bottom: 40px;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 1.4;
-  color: rgba(18, 20, 23, 0.8);
+  p {
+    font-size: 16px;
+    line-height: 1.37;
+    color: rgba(18, 20, 23, 0.8);
+    margin-bottom: 40px;
+  }
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  width: 100%;
 }
 
-.form > input {
-  width: 100%;
-  border: 1px solid rgba(18, 20, 23, 0.1);
-  border-radius: 12px;
-  padding: 16px 18px;
-  height: 54px;
-  outline: none;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
-
-.form > input:focus {
-  border-color: #f4c550;
-}
-
-.form > span {
-  font-size: 12px;
-  color: #d80027;
-}
-
-.form > button {
-  margin-top: 20px;
-  height: 54px;
-  border-radius: 12px;
-  border: none;
-  background: #f4c550;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.switchText {
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-.switchText button {
-  background: none;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* ===== PASSWORD FIELD ===== */
 
 .passwordField {
   position: relative;
   width: 100%;
 }
 
-.passwordField input {
+.input {
   width: 100%;
+  padding: 16px 18px;
   border: 1px solid rgba(18, 20, 23, 0.1);
   border-radius: 12px;
-  padding: 16px 48px 16px 18px; /* місце справа для іконки */
-  height: 54px;
+  font-size: 16px;
   outline: none;
-}
+  transition: border-color 250ms ease;
 
-.passwordField input:focus {
-  border-color: #f4c550;
+  &:focus {
+    border-color: #f4c550;
+  }
 }
-
-/* ===== EYE BUTTON ===== */
 
 .eyeBtn {
   position: absolute;
+  right: 18px;
   top: 50%;
-  right: 16px;
   transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
 
+  /* Скидання стандартних стилів кнопки */
   background: transparent;
   border: none;
+  outline: none;
   padding: 0;
-  cursor: pointer;
+  margin: 0;
 
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Колір іконки */
+  color: #f4c550;
+  transition: color 250ms ease;
+
+  &:hover {
+    color: #e0b040;
+  }
+
+  svg {
+    display: block;
+    pointer-events: none; /* щоб клік йшов саме по кнопці */
+  }
 }
 
-.eyeBtn svg {
-  width: 22px;
-  height: 22px;
+.error {
+  color: #ff4e4e;
+  font-size: 12px;
+}
+
+.submitBtn {
+  margin-top: 22px;
+  padding: 16px;
+  background-color: #f4c550;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 250ms ease;
+
+  &:hover {
+    background-color: #ffdc86;
+  }
+}
+
+.switchText {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+
+  button {
+    background: none;
+    border: none;
+    color: #f4c550;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+  }
 }
