@@ -4,12 +4,13 @@ import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { getDatabase, ref, push } from "firebase/database";
+import toast from "react-hot-toast"; // ✅ Імпортуємо toast
 
 import { app } from "../../services/firebase";
 import type { Teacher } from "../../types/teacher";
 import styles from "./BookLessonModal.module.scss";
 
-// 1. Схема валідації (згідно з ТЗ: всі поля обов'язкові)
+// 1. Схема валідації
 const schema = yup.object().shape({
   reason: yup.string().required("Please select a reason for your lesson"),
   fullName: yup.string().min(3, "Too short").required("Full name is required"),
@@ -47,7 +48,6 @@ const BookLessonModal = ({ teacher, onClose }: BookLessonModalProps) => {
     defaultValues: { reason: "career" },
   });
 
-  // Закриття модалки (ТЗ пункти 11)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -62,27 +62,30 @@ const BookLessonModal = ({ teacher, onClose }: BookLessonModalProps) => {
     };
   }, [onClose]);
 
-  // 2. Функція відправки даних у Firebase
+  // 2. Функція відправки даних (з використанням Toast)
   const onFormSubmit: SubmitHandler<IFormInput> = async data => {
     try {
       const db = getDatabase(app);
-      const bookingsRef = ref(db, "bookings"); // Гілка "bookings" у твоїй базі
+      const bookingsRef = ref(db, "bookings");
 
       await push(bookingsRef, {
         ...data,
         teacherName: `${teacher.name} ${teacher.surname}`,
-        teacherId: teacher.id || `${teacher.name}_${teacher.surname}`, // ID вчителя для зв'язку
+        teacherId: teacher.id || `${teacher.name}_${teacher.surname}`,
         createdAt: new Date().toISOString(),
       });
 
-      alert(
-        "Booking successful! Your data is saved in Firebase Realtime Database.",
-      );
+      // ✅ Замість alert використовуємо успішний toast
+      toast.success("Booking successful! We will contact you soon.", {
+        icon: "📅",
+      });
+
       reset();
       onClose();
     } catch (error) {
       console.error("Firebase submit error:", error);
-      alert("Something went wrong. Please check your connection.");
+      // ✅ Замість alert використовуємо помилковий toast
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
@@ -94,13 +97,7 @@ const BookLessonModal = ({ teacher, onClose }: BookLessonModalProps) => {
           onClick={onClose}
           aria-label="close"
         >
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
             <path
               d="M24 8L8 24M8 8L24 24"
               stroke="currentColor"
@@ -201,4 +198,3 @@ const BookLessonModal = ({ teacher, onClose }: BookLessonModalProps) => {
 };
 
 export default BookLessonModal;
-
