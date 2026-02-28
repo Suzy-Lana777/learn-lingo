@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+// Використовуємо один лейаут для всього додатка
 import MainLayout from "./components/Layout/HomeLayout";
 
 import Home from "./pages/Home/Home";
